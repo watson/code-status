@@ -8,7 +8,8 @@
     "columnify": "^1.5.1",
     "debug": "^2.2.0",
     "minimist": "^1.1.1",
-    "patterns": "^1.0.2"
+    "patterns": "^1.0.2",
+    "queue-async": "^1.0.7"
   },
   "devDependencies": {
     "standard": "^4.3.1"

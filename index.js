@@ -4,6 +4,7 @@
 var os = require('os')
 var fs = require('fs')
 var path = require('path')
+var queue = require('queue-async')(1)
 var exec = require('child_process').exec
 var debug = require('debug')('git-status')
 var columnify = require('columnify')
@@ -51,7 +52,7 @@ var joinWith = function (a) {
   }
 }
 
-var output = function (results) {
+var outputResults = function (results) {
   results = results.filter(function (result) {
     return result.branch !== 'master' ||
            result.ahead || Number.isNaN(result.ahead) ||
@@ -122,23 +123,6 @@ var processGitDir = function (cwd, dir, cb) {
   status(dir, next())
 }
 
-var ongoing = []
-var results = []
-var queueGitDir = function (cwd, dir) {
-  var next = function () {
-    processGitDir(cwd, ongoing[0], function (err, result) {
-      if (err) throw err
-      results.push(result)
-      ongoing.shift()
-      if (ongoing.length) next()
-      else output(results)
-    })
-  }
-
-  ongoing.push(dir)
-  if (ongoing.length === 1) process.nextTick(next)
-}
-
 var processDir = function (cwd, dir) {
   if (!dir) dir = cwd
   dir = path.resolve(dir)
@@ -148,10 +132,15 @@ var processDir = function (cwd, dir) {
 
   var content = fs.readdirSync(dir)
 
-  if (~content.indexOf('.git')) queueGitDir(cwd, dir)
+  if (~content.indexOf('.git')) queue.defer(processGitDir, cwd, dir)
   else content.map(joinWith(dir)).filter(isDir).forEach(processDir.bind(null, cwd))
 }
 
 dirs.forEach(function (dir) {
   processDir(dir)
+})
+
+queue.awaitAll(function (err, results) {
+  if (err) throw err
+  outputResults(results)
 })
