@@ -1,0 +1,49 @@
+{
+  "name": "git-att",
+  "version": "0.0.0",
+  "description": "Check if any of your git projects needs attention",
+  "main": "index.js",
+  "dependencies": {
+    "after-all-results": "^2.0.0",
+    "columnify": "^1.5.1",
+    "debug": "^2.2.0",
+    "minimist": "^1.1.1",
+    "patterns": "^1.0.2"
+  },
+  "devDependencies": {
+    "standard": "^4.3.1"
+  },
+  "scripts": {
+    "test": "standard"
+  },
+  "bin": {
+    "git-att": "index.js"
+  },
+  "author": "Thomas Watson Steen <w@tson.dk> (https://twitter.com/wa7son)",
+  "license": "MIT",
+  "keywords": [
+    "git",
+    "status",
+    "check",
+    "tool",
+    "project",
+    "projects",
+    "node",
+    "modules",
+    "push",
+    "outdated"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/watson/git-att.git"
+  },
+  "bugs": {
+    "url": "https://github.com/watson/git-att/issues"
+  },
+  "homepage": "https://github.com/watson/git-att",
+  "preferGlobal": true,
+  "coordinates": [
+    18.6851701,
+    -68.4218764
+  ]
+}
