@@ -20,7 +20,7 @@ and list the projects.
 Install git-att globally:
 
 ```
-git install -g git-att
+npm install -g git-att
 ```
 
 ## Example usage
