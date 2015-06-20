@@ -11,9 +11,12 @@
     "patterns": "^1.0.2",
     "queue-async": "^1.0.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "tape": "^4.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test/*"
   },
   "bin": {
     "git-att": "index.js"
