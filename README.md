@@ -28,10 +28,10 @@ git install -g git-att
 ```
 $ git-att ~/code
 DIR                BRANCH      AHEAD DIRTY UNTRACKED
-after-all-results  master      0     1     0        
-airserver          master      0     3     10        
-connect            master      95    1     0        
-hubot-heroku       patch-1     0     1     0        
+after-all-results  master      0     1     0
+airserver          master      0     3     10
+connect            master      95    1     0
+hubot-heroku       patch-1     0     1     0
 ```
 
 ## Docs
