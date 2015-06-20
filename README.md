@@ -40,7 +40,7 @@ hubot-heroku       patch-1     0     1     0
 git-att [options] [path]
 ```
 
-The `path` defaults to the current direcotry if not specified. The
+The `path` defaults to the current directory if not specified. The
 git-att program will look through that directory and all sub-directories
 scanning for git projects.
 
