@@ -26,7 +26,7 @@ npm install -g git-att
 ## Example usage
 
 ```
-$ git-att ~/code
+$ git att ~/code
 DIR                BRANCH      AHEAD DIRTY UNTRACKED
 after-all-results  master      0     1     0
 airserver          master      0     3     10
@@ -37,7 +37,7 @@ hubot-heroku       patch-1     0     1     0
 ## Docs
 
 ```
-git-att [options] [path]
+git att [options] [path]
 ```
 
 The `path` defaults to the current directory if not specified. The
