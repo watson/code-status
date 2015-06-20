@@ -1,6 +1,6 @@
 {
   "name": "git-att",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Check if any of your git projects needs attention",
   "main": "index.js",
   "dependencies": {
