@@ -14,7 +14,6 @@ If the answer is yes to any of those questions, this module will find
 and list the projects.
 
 [![Build status](https://travis-ci.org/watson/git-att.svg?branch=master)](https://travis-ci.org/watson/git-att)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 ## Installation
 
