@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 'use strict'
 
-var queue = require('queue-async')(1)
+var path = require('path')
 var columnify = require('columnify')
 var pkg = require('./package')
+var queue = require('./lib/queue')(done)
 var scan = require('./lib/scan')
 var git = require('./lib/git')
 
@@ -17,16 +18,14 @@ dirs
   .map(function (dir) {
     return { cwd: dir, repos: scan(dir) }
   })
-  .forEach(function (result) {
-    result.repos.forEach(function (repo) {
-      queue.defer(git.check, result.cwd, repo)
+  .forEach(function (dir) {
+    dir.repos.forEach(function (repo) {
+      queue(git.check, [repo], function (err, result) {
+        if (err) return
+        result.dir = path.relative(dir.cwd, repo)
+      })
     })
   })
-
-queue.awaitAll(function (err, results) {
-  if (err) throw err
-  outputResults(results)
-})
 
 function version () {
   console.log(pkg.version)
@@ -48,7 +47,9 @@ function help () {
   process.exit()
 }
 
-function outputResults (results) {
+function done (err, results) {
+  if (err) throw err
+
   results = results.filter(function (result) {
     return result.branch !== 'master' ||
            result.ahead || Number.isNaN(result.ahead) ||
@@ -60,7 +61,7 @@ function outputResults (results) {
       return Object.keys(result).map(function (key) { return result[key] })
     }).join('\n')
   } else {
-    results = columnify(results)
+    results = columnify(results, { columns: ['dir', 'branch', 'ahead', 'dirty', 'untracked'] })
   }
 
   console.log(results)
