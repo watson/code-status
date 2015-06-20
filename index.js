@@ -23,6 +23,7 @@ dirs
       queue(git.check, [repo], function (err, result) {
         if (err) return
         result.dir = path.relative(dir.cwd, repo)
+        return result
       })
     })
   })
