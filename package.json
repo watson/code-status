@@ -1,6 +1,6 @@
 {
   "name": "code-status",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Check if any of your git projects needs attention",
   "main": "index.js",
   "dependencies": {
