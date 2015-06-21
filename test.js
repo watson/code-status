@@ -4,7 +4,7 @@ var path = require('path')
 var test = require('tape')
 var mkdirp = require('mkdirp')
 var afterAll = require('after-all-results')
-var scan = require('../lib/scan')
+var scan = require('./lib/scan')
 
 test('scan - cwd', function (t) {
   t.deepEqual(scan(process.cwd()), [process.cwd()])

@@ -3,9 +3,9 @@
 
 var path = require('path')
 var git = require('git-state')
+var queuealot = require('queuealot')(done)
 var columnify = require('columnify')
 var pkg = require('./package')
-var queue = require('./lib/queue')(done)
 var scan = require('./lib/scan')
 
 var argv = require('minimist')(process.argv.slice(2))
@@ -20,10 +20,12 @@ dirs
   })
   .forEach(function (dir) {
     dir.repos.forEach(function (repo) {
-      queue(git.check, [repo], function (err, result) {
-        if (err) return
-        result.dir = path.relative(dir.cwd, repo)
-        return result
+      queue(function (cb) {
+        git.check(repo, function (err, result) {
+          if (err) return cb(err)
+          result.dir = path.relative(dir.cwd, repo)
+          cb(null, result)
+        })
       })
     })
   })
@@ -51,11 +53,7 @@ function help () {
 function done (err, results) {
   if (err) throw err
 
-  results = results.filter(function (result) {
-    return result.branch !== 'master' ||
-           result.ahead || Number.isNaN(result.ahead) ||
-           result.dirty || result.untracked
-  })
+  results = results.filter(function (result) { return result.issues })
 
   if (argv.simple) {
     results = results.map(function (result) {
