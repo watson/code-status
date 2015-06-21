@@ -3,7 +3,7 @@
 
 var path = require('path')
 var git = require('git-state')
-var queuealot = require('queuealot')(done)
+var queue = require('queuealot')(done)
 var columnify = require('columnify')
 var pkg = require('./package')
 var scan = require('./lib/scan')
