@@ -6,6 +6,7 @@
   "dependencies": {
     "after-all-results": "^2.0.0",
     "columnify": "^1.5.1",
+    "git-state": "^1.0.1",
     "minimist": "^1.1.1",
     "patterns": "^1.0.2"
   },

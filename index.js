@@ -2,11 +2,11 @@
 'use strict'
 
 var path = require('path')
+var git = require('git-state')
 var columnify = require('columnify')
 var pkg = require('./package')
 var queue = require('./lib/queue')(done)
 var scan = require('./lib/scan')
-var git = require('./lib/git')
 
 var argv = require('minimist')(process.argv.slice(2))
 var dirs = argv._.length ? argv._ : [process.cwd()]
