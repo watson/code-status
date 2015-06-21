@@ -1,5 +1,5 @@
 {
-  "name": "git-att",
+  "name": "code-status",
   "version": "1.0.1",
   "description": "Check if any of your git projects needs attention",
   "main": "index.js",
@@ -17,7 +17,7 @@
     "test": "tape test/*"
   },
   "bin": {
-    "git-att": "index.js"
+    "code-status": "index.js"
   },
   "author": "Thomas Watson Steen <w@tson.dk> (https://twitter.com/wa7son)",
   "license": "MIT",
@@ -35,12 +35,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/watson/git-att.git"
+    "url": "https://github.com/watson/code-status.git"
   },
   "bugs": {
-    "url": "https://github.com/watson/git-att/issues"
+    "url": "https://github.com/watson/code-status/issues"
   },
-  "homepage": "https://github.com/watson/git-att",
+  "homepage": "https://github.com/watson/code-status",
   "preferGlobal": true,
   "coordinates": [
     18.6851701,

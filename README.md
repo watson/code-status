@@ -1,4 +1,4 @@
-# git-att
+# code-status
 
 Check if any of your git projects needs attention:
 
@@ -13,20 +13,20 @@ Runs through all your code projects and checks the following:
 If the answer is yes to any of those questions, this module will find
 and list the projects.
 
-[![Build status](https://travis-ci.org/watson/git-att.svg?branch=master)](https://travis-ci.org/watson/git-att)
+[![Build status](https://travis-ci.org/watson/code-status.svg?branch=master)](https://travis-ci.org/watson/code-status)
 
 ## Installation
 
-Install git-att globally:
+Install code-status globally:
 
 ```
-npm install -g git-att
+npm install -g code-status
 ```
 
 ## Example usage
 
 ```
-$ git att ~/code
+$ code-status ~/code
 DIR                BRANCH      AHEAD DIRTY UNTRACKED
 after-all-results  master      0     1     0
 airserver          master      0     3     10
@@ -37,12 +37,12 @@ hubot-heroku       patch-1     0     1     0
 ## Docs
 
 ```
-git att [options] [path]
+code-status [options] [path]
 ```
 
 The `path` defaults to the current directory if not specified. The
-git-att program will look through that directory and all sub-directories
-scanning for git projects.
+code-status program will look through that directory and all
+sub-directories scanning for git projects.
 
 Options:
 
