@@ -1,6 +1,6 @@
 {
   "name": "code-status",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Check if any of your git projects needs attention",
   "main": "index.js",
   "dependencies": {
@@ -45,7 +45,7 @@
   "homepage": "https://github.com/watson/code-status",
   "preferGlobal": true,
   "coordinates": [
-    55.68045590000001,
-    12.5735397
+    56.00999502904829,
+    11.961870541375674
   ]
 }
