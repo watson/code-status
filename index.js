@@ -3,6 +3,8 @@
 
 var path = require('path')
 var git = require('git-state')
+var Table = require('cli-table')
+var chalk = require('chalk')
 var queue = require('queuealot')(done)
 var columnify = require('columnify')
 var pkg = require('./package')
@@ -60,8 +62,30 @@ function done (err, results) {
       return Object.keys(result).map(function (key) { return result[key] })
     }).join('\n')
   } else {
-    results = columnify(results, { columns: ['dir', 'branch', 'ahead', 'dirty', 'untracked'] })
+    var table = new Table({
+      head: [
+          chalk.cyan('Directory'),
+          chalk.cyan('Branch'),
+          chalk.cyan('Ahead'),
+          chalk.cyan('Dirty'),
+          chalk.cyan('Untracked')
+        ]
+    });
+    
+    //results = columnify(results, { columns: ['dir', 'branch', 'ahead', 'dirty', 'untracked'] })
+
+    results.map(function (result) {
+
+      var method = result.dirty == 0 ? result.ahead == 0 ? result.untracked == 0 ? chalk.grey : chalk.yellow : chalk.green : chalk.red;
+      table.push([
+          method(result.dir),
+          method(result.branch),
+          method(result.ahead),
+          method(result.dirty),
+          method(result.untracked)
+        ]);
+    })
   }
 
-  console.log(results)
+  console.log(table.toString())
 }

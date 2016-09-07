@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "after-all-results": "^2.0.0",
-    "columnify": "^1.5.2",
+    "chalk": "^1.1.3",
+    "cli-table": "^0.3.1",
     "git-state": "^2.3.0",
     "minimist": "^1.1.3",
     "patterns": "^1.0.2",
