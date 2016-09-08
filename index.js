@@ -47,6 +47,7 @@ function help () {
     'Options:\n' +
     '  --help, -h     show this help\n' +
     '  --version, -v  show version\n' +
+    '  --coloured, -c coloured output\n' +
     '  --simple       make the output more simple for easy grepping'
   )
   process.exit()
@@ -61,7 +62,7 @@ function done (err, results) {
     results = results.map(function (result) {
       return Object.keys(result).map(function (key) { return result[key] })
     }).join('\n')
-  } else {
+  } if (argv.coloured || argv.c) {
     var table = new Table({
       head: [
           chalk.cyan('Directory'),
@@ -72,11 +73,15 @@ function done (err, results) {
         ]
     });
     
-    //results = columnify(results, { columns: ['dir', 'branch', 'ahead', 'dirty', 'untracked'] })
-
     results.map(function (result) {
 
-      var method = result.dirty == 0 ? result.ahead == 0 ? result.untracked == 0 ? chalk.grey : chalk.yellow : chalk.green : chalk.red;
+      var method = result.dirty == 0 
+                    ? result.ahead == 0 
+                      ? result.untracked == 0 
+                        ? chalk.grey 
+                        : chalk.yellow 
+                      : chalk.green 
+                    : chalk.red;
       table.push([
           method(result.dir),
           method(result.branch),
@@ -85,7 +90,10 @@ function done (err, results) {
           method(result.untracked)
         ]);
     })
+    results = table.toString();
+  } else {
+    results = columnify(results, { columns: ['dir', 'branch', 'ahead', 'dirty', 'untracked'] })
   }
 
-  console.log(table.toString())
+  console.log(results)
 }
