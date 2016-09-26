@@ -69,7 +69,7 @@ function done (err, results) {
     results = results.map(function (result) {
       return Object.keys(result).map(function (key) { return result[key] })
     }).join('\n')
-  } if (argv.coloured || argv.c) {
+  } else if (argv.coloured || argv.c) {
     var table = new Table({
       head: [
         chalk.cyan('Directory'),
