@@ -6,13 +6,12 @@ var git = require('git-state')
 var Table = require('cli-table')
 var chalk = require('chalk')
 var queue = require('queuealot')(done)
-var columnify = require('columnify')
 var pkg = require('./package')
 var scan = require('./lib/scan')
 
 var VALID_BRANCHES = ['master', 'gh-pages']
 
-var argv = require('minimist')(process.argv.slice(2), { default: { colors: true } })
+var argv = require('minimist')(process.argv.slice(2))
 var dirs = argv._.length ? argv._ : [process.cwd()]
 
 if (argv.version || argv.v) {
@@ -56,7 +55,6 @@ function help () {
     'Options:\n' +
     '  --help, -h     show this help\n' +
     '  --version, -v  show version\n' +
-    '  --no-colors,   disable coloured output\n' +
     '  --simple       make the output more simple for easy grepping'
   )
   process.exit()
@@ -75,7 +73,7 @@ function done (err, results) {
     results = results.map(function (result) {
       return Object.keys(result).map(function (key) { return result[key] })
     }).join('\n')
-  } else if (argv.colors) {
+  } else {
     var table = new Table({
       head: [
         chalk.cyan('Directory'),
@@ -105,8 +103,6 @@ function done (err, results) {
       ])
     })
     results = table.toString()
-  } else {
-    results = columnify(results, { columns: ['dir', 'branch', 'ahead', 'dirty', 'untracked', 'stashes'] })
   }
 
   console.log(results)
