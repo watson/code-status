@@ -7,16 +7,16 @@
     "after-all-results": "^2.0.0",
     "chalk": "^1.1.3",
     "cli-table": "^0.3.1",
-    "columnify": "^1.5.2",
-    "git-state": "^2.3.0",
-    "minimist": "^1.1.3",
+    "columnify": "^1.5.4",
+    "git-state": "^2.5.2",
+    "minimist": "^1.2.0",
     "patterns": "^1.0.2",
     "queuealot": "^1.0.2"
   },
   "devDependencies": {
     "mkdirp": "^0.5.1",
     "standard": "^8.1.0",
-    "tape": "^4.0.3"
+    "tape": "^4.6.0"
   },
   "scripts": {
     "test": "standard && tape test.js"
