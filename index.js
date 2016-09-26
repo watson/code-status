@@ -79,15 +79,15 @@ function done (err, results) {
         chalk.cyan('Untracked')
       ]
     })
-    
+
     results.map(function (result) {
 
-      var method = result.dirty == 0 
-        ? result.ahead == 0 
-          ? result.untracked == 0 
-            ? chalk.grey 
-            : chalk.yellow 
-          : chalk.green 
+      var method = result.dirty == 0
+        ? result.ahead == 0
+          ? result.untracked == 0
+            ? chalk.grey
+            : chalk.yellow
+          : chalk.green
         : chalk.red
       table.push([
         method(result.dir),
