@@ -55,6 +55,7 @@ function help () {
     'Options:\n' +
     '  --help, -h     show this help\n' +
     '  --version, -v  show version\n' +
+    '  --compact, -c  output compact table\n' +
     '  --simple       make the output more simple for easy grepping'
   )
   process.exit()
@@ -74,7 +75,7 @@ function done (err, results) {
       return Object.keys(result).map(function (key) { return result[key] })
     }).join('\n')
   } else {
-    var table = new Table({
+    var tableOpts = {
       head: [
         chalk.cyan('Directory'),
         chalk.cyan('Branch'),
@@ -83,7 +84,13 @@ function done (err, results) {
         chalk.cyan('Untracked'),
         chalk.cyan('Stashes')
       ]
-    })
+    }
+
+    if (argv.compact || argv.c) {
+      tableOpts.chars = {'mid': '', 'left-mid': '', 'mid-mid': '', 'right-mid': ''}
+    }
+
+    var table = new Table(tableOpts)
 
     results.map(function (result) {
       var method = result.dirty === 0
