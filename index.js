@@ -10,6 +10,8 @@ var columnify = require('columnify')
 var pkg = require('./package')
 var scan = require('./lib/scan')
 
+var VALID_BRANCHES = ['master', 'gh-pages']
+
 var argv = require('minimist')(process.argv.slice(2), { default: { colors: true } })
 var dirs = argv._.length ? argv._ : [process.cwd()]
 
@@ -63,7 +65,11 @@ function help () {
 function done (err, results) {
   if (err) throw err
 
-  results = results.filter(function (result) { return result.issues })
+  results = results.filter(function (result) {
+    return Boolean(!~VALID_BRANCHES.indexOf(result.branch) ||
+                   result.ahead || Number.isNaN(result.ahead) ||
+                   result.dirty || result.untracked || result.stashes)
+  })
 
   if (argv.simple) {
     results = results.map(function (result) {
@@ -76,7 +82,8 @@ function done (err, results) {
         chalk.cyan('Branch'),
         chalk.cyan('Ahead'),
         chalk.cyan('Dirty'),
-        chalk.cyan('Untracked')
+        chalk.cyan('Untracked'),
+        chalk.cyan('Stashes')
       ]
     })
 
@@ -93,12 +100,13 @@ function done (err, results) {
         method(result.branch),
         method(result.ahead),
         method(result.dirty),
-        method(result.untracked)
+        method(result.untracked),
+        method(result.stashes)
       ])
     })
     results = table.toString()
   } else {
-    results = columnify(results, { columns: ['dir', 'branch', 'ahead', 'dirty', 'untracked'] })
+    results = columnify(results, { columns: ['dir', 'branch', 'ahead', 'dirty', 'untracked', 'stashes'] })
   }
 
   console.log(results)

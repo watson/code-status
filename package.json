@@ -8,7 +8,7 @@
     "chalk": "^1.1.3",
     "cli-table": "^0.3.1",
     "columnify": "^1.5.4",
-    "git-state": "^2.5.2",
+    "git-state": "^3.0.1",
     "minimist": "^1.2.0",
     "patterns": "^1.0.2",
     "queuealot": "^1.0.2"
