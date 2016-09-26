@@ -78,7 +78,7 @@ function done (err, results) {
         chalk.cyan('Dirty'),
         chalk.cyan('Untracked')
       ]
-    });
+    })
     
     results.map(function (result) {
 
@@ -88,16 +88,16 @@ function done (err, results) {
             ? chalk.grey 
             : chalk.yellow 
           : chalk.green 
-        : chalk.red;
+        : chalk.red
       table.push([
         method(result.dir),
         method(result.branch),
         method(result.ahead),
         method(result.dirty),
         method(result.untracked)
-      ]);
+      ])
     })
-    results = table.toString();
+    results = table.toString()
   } else {
     results = columnify(results, { columns: ['dir', 'branch', 'ahead', 'dirty', 'untracked'] })
   }
