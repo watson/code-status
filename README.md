@@ -38,10 +38,10 @@ hubot-heroku       patch-1     0     1     0
 ## Docs
 
 ```
-code-status [options] [path]
+code-status [paths] [options]
 ```
 
-The `path` defaults to the current directory if not specified. The
+The `paths` defaults to the current directory if not specified. The
 code-status program will look through that directory and all
 sub-directories scanning for git projects.
 

@@ -49,7 +49,7 @@ function help () {
     pkg.name + ' ' + pkg.version + '\n' +
     pkg.description + '\n\n' +
     'Usage:\n' +
-    '  ' + pkg.name + ' [options] [paths]\n\n' +
+    '  ' + pkg.name + ' [paths] [options]\n\n' +
     'The paths defaults to the current direcotry if not specified.\n\n' +
     'Options:\n' +
     '  --help, -h     show this help\n' +
