@@ -13,8 +13,15 @@ var scan = require('./lib/scan')
 var argv = require('minimist')(process.argv.slice(2))
 var dirs = argv._.length ? argv._ : [process.cwd()]
 
-if (argv.version || argv.v) return version()
-if (argv.help || argv.h) return help()
+if (argv.version || argv.v) {
+  version()
+  process.exit()
+}
+
+if (argv.help || argv.h) {
+  help()
+  process.exit()
+}
 
 dirs
   .map(function (dir) {
