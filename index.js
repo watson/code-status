@@ -81,7 +81,6 @@ function done (err, results) {
     })
 
     results.map(function (result) {
-
       var method = result.dirty == 0
         ? result.ahead == 0
           ? result.untracked == 0
