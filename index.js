@@ -10,7 +10,7 @@ var columnify = require('columnify')
 var pkg = require('./package')
 var scan = require('./lib/scan')
 
-var argv = require('minimist')(process.argv.slice(2))
+var argv = require('minimist')(process.argv.slice(2), { default: { colors: true } })
 var dirs = argv._.length ? argv._ : [process.cwd()]
 
 if (argv.version || argv.v) {
@@ -54,7 +54,7 @@ function help () {
     'Options:\n' +
     '  --help, -h     show this help\n' +
     '  --version, -v  show version\n' +
-    '  --coloured, -c coloured output\n' +
+    '  --no-colors,   disable coloured output\n' +
     '  --simple       make the output more simple for easy grepping'
   )
   process.exit()
@@ -69,7 +69,7 @@ function done (err, results) {
     results = results.map(function (result) {
       return Object.keys(result).map(function (key) { return result[key] })
     }).join('\n')
-  } else if (argv.coloured || argv.c) {
+  } else if (argv.colors) {
     var table = new Table({
       head: [
         chalk.cyan('Directory'),
